@@ -48,18 +48,29 @@ public class EarsketchSDM {
         }
     }
     
+    private Agent getAgentByName(String s)
+    {
+        
+    }
+    
     private static void setupInfluences(List<Agent> T)
     {
+        Agent cAgent;
+        Attribute cAttr;
+        Agent iAgent;
+      //**********MAKE THIS DATA DRIVEN*****************
+      //**********MAKE THIS DATA DRIVEN*****************
+      //**********MAKE THIS DATA DRIVEN*****************
       //Add influences
-        T.get(0).attributes.get(0).addInfluencer(T.get(1), T.get(1).attributes.get(0), 1, ABSOLUTE);
-        T.get(0).attributes.get(1).addInfluencer(T.get(1), T.get(1).attributes.get(1), 1, ABSOLUTE);
-        T.get(0).attributes.get(2).addInfluencer(T.get(1), T.get(1).attributes.get(2), 1, ABSOLUTE);
-        T.get(0).attributes.get(3).addInfluencer(T.get(1), T.get(1).attributes.get(3), 1, ABSOLUTE);
+      
+        cAgent = T.getAgentByName(0);
+        cAttr = cAgent.getAttributeByName("CS Self Efficacy");
+        iAgent = T.getAgentByName(1);
         
-        T.get(1).attributes.get(0).addInfluencer(T.get(0), T.get(0).attributes.get(0), 1, ABSOLUTE);
-        T.get(1).attributes.get(1).addInfluencer(T.get(0), T.get(0).attributes.get(1), 1, ABSOLUTE);
-        T.get(1).attributes.get(2).addInfluencer(T.get(0), T.get(0).attributes.get(2), 1, ABSOLUTE);
-        T.get(1).attributes.get(3).addInfluencer(T.get(0), T.get(0).attributes.get(3), 1, ABSOLUTE);
+        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("CS Self Efficacy"), .3, ABSOLUTE, false);
+        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("Content Knowledge"), .3, ABSOLUTE, false);
+        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("CS Experience"), .2, ABSOLUTE, false);
+        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("Teaching Experience"), .2, ABSOLUTE, false);
     }
     
     private static void addToAgents (List<Agent> a, List<Agent> b)
@@ -141,7 +152,11 @@ public class EarsketchSDM {
     private static void getStartingValues(List<Agent> teachers, List<Agent> classrooms, List<Agent> students, List<Agent> admins, List<Agent> sponsoringOrg) throws IOException
     {
         String fileName;
-        fileName = "C:\\Users\\Michael\\Documents\\CEISMC Data\\EarsketchModelInputData2015.csv";
+        String workingDir = System.getProperty("user.dir");
+	System.out.println("Current working directory : " + workingDir);
+        
+        //fileName = "C:\\Users\\Michael\\Documents\\CEISMC Data\\EarsketchModelInputData2015.csv";
+        fileName = "data\\EarsketchModelInputData2015.csv";
         BufferedReader br = new BufferedReader(
         new InputStreamReader(new FileInputStream(fileName)));
         try {

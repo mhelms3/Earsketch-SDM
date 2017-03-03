@@ -27,16 +27,16 @@ public class Classroom extends Agent{
     public Classroom(int maxTime, String classname, boolean AP)
     {
         //fixed Variables
-        isAP = new Attribute(this, 5, maxTime, "static", "AP Class", 0, true);
+        isAP = new Attribute(this, 5, maxTime, "static", "AP Class", 0, true, false);
         attributes.add(isAP);
         
         //Incremental or Annual Variables
-        technologySupport = new Attribute(this, 0, maxTime, "annualOnly", "Technology Support",0, true);
-        collaborationObserved = new Attribute(this, 0, maxTime, "annualOnly", "Observed Collaboration",0, true);
-        classStudentNumber = new Attribute(this, 0, maxTime, "externalFocus", "Number of Students",-0.1, true);
-        classAllocatedTime = new Attribute(this, 0, maxTime, "allExternalAbsolute", "Allocated Time",-0.1, true);
-        classInstructionalTime = new Attribute(this, 0, maxTime, "externalFocus", "Instructional Time",-0.5, true);
-        classPrepTime = new Attribute(this, 0, maxTime, "externalFocus", "Teacher Prep Time",-0.1, true);
+        technologySupport = new Attribute(this, 0, maxTime, "annualOnly", "Technology Support",0, true, false);
+        collaborationObserved = new Attribute(this, 0, maxTime, "annualOnly", "Observed Collaboration",0, true, false);
+        classStudentNumber = new Attribute(this, 0, maxTime, "externalFocus", "Number of Students",-0.1, true, false);
+        classAllocatedTime = new Attribute(this, 0, maxTime, "allExternalAbsolute", "Allocated Time",-0.1, true, false);
+        classInstructionalTime = new Attribute(this, 0, maxTime, "externalFocus", "Instructional Time",-0.5, true, false);
+        classPrepTime = new Attribute(this, 0, maxTime, "externalFocus", "Teacher Prep Time",-0.1, true, false);
         attributes.add(technologySupport);
         attributes.add(collaborationObserved);
         attributes.add(classStudentNumber);

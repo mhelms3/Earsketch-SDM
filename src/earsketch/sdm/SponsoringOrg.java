@@ -31,16 +31,16 @@ public class SponsoringOrg extends Agent{
     public SponsoringOrg(int maxTime, String sponsorName){
         
         //Incremetnal of Annual Variables
-        initialPD_CS = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD CS",0, true);
-        initialPD_EarSketch = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD EarSketch",0, true);
-        initialPD_StudioBasedLearning = new Attribute(this, 0, maxTime, "allInternalAbsolutey", "Initial PD Studio",0, true);
+        initialPD_CS = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD CS",0, true, false);
+        initialPD_EarSketch = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD EarSketch",0, true, false);
+        initialPD_StudioBasedLearning = new Attribute(this, 0, maxTime, "allInternalAbsolutey", "Initial PD Studio",0, true, false);
         attributes.add(initialPD_CS);
         attributes.add(initialPD_EarSketch);                
         attributes.add(initialPD_StudioBasedLearning);                
         
         //Dynamic Variables
-        TechnicalSupport = new Attribute(this, 0, maxTime, "annualOnly", "Technical Support",0, false);
-        Adaptability = new Attribute(this, 0, maxTime, "allInternalDelta", "Adaptability",0, false);
+        TechnicalSupport = new Attribute(this, 0, maxTime, "annualOnly", "Technical Support",0, false, false);
+        Adaptability = new Attribute(this, 0, maxTime, "allInternalDelta", "Adaptability",0, false, false);
         attributes.add(TechnicalSupport);                
         attributes.add(Adaptability);
 

@@ -34,24 +34,24 @@ public class Teacher extends Agent {
     public Teacher(int maxTime, String teacherName) {
     
         //Fixed Variables
-        qualifications = new Attribute(this, 0, maxTime, "static", "Teaching Qualifications", 0, false);        
-        musicArtInterest = new Attribute(this, 0, maxTime, "static", "Music and Art Interest", 0, false);
+        qualifications = new Attribute(this, 0, maxTime, "static", "Teaching Qualifications", 0, false, false);        
+        musicArtInterest = new Attribute(this, 0, maxTime, "static", "Music and Art Interest", 0, false, false);
         attributes.add(qualifications);        
         attributes.add(musicArtInterest);
         
         //Incremental or Annual Variables
-        CS_Experience = new Attribute(this, 0, maxTime, "incremental", "CS Experience",1, true); 
-        TeachingExperience = new Attribute(this, 0, maxTime, "incremental", "Teaching Experience",1, true); 
+        CS_Experience = new Attribute(this, 0, maxTime, "incremental", "CS Experience",1, true, false); 
+        TeachingExperience = new Attribute(this, 0, maxTime, "incremental", "Teaching Experience",1, true, false); 
         attributes.add(CS_Experience);
         attributes.add(TeachingExperience);
         
         //Dynamic Variables
-        studioTeaching = new Attribute(this, 0, maxTime, "standard", "Studio Teaching",0, false); 
-        earsketchKnowledge = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Earsketch Knowledge",0, false);
-        contentKnowledge = new Attribute(this, 0, maxTime, "standard", "Content Knowledge",0, false);
-        CS_SelfEfficacy = new Attribute(this, 0, maxTime, "selfEfficacy", "CS Self Efficacy",-0.1, false); 
-        interventionSupport = new Attribute(this, 0, maxTime, "allInternalDelta", "Intervention Support",0, false);
-        technicalMusicKnowledge = new Attribute(this, 0, maxTime, "allInternalDelta", "Technical Music Knowledge",0, false);
+        studioTeaching = new Attribute(this, 0, maxTime, "standard", "Studio Teaching",0, false, false); 
+        earsketchKnowledge = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Earsketch Knowledge",0, false, false);
+        contentKnowledge = new Attribute(this, 0, maxTime, "standard", "Content Knowledge",0, false, false);
+        CS_SelfEfficacy = new Attribute(this, 0, maxTime, "selfEfficacy", "CS Self Efficacy",-0.1, false, false); 
+        interventionSupport = new Attribute(this, 0, maxTime, "allInternalDelta", "Intervention Support",0, false, false);
+        technicalMusicKnowledge = new Attribute(this, 0, maxTime, "allInternalDelta", "Technical Music Knowledge",0, false, false);
         attributes.add(studioTeaching);
         attributes.add(earsketchKnowledge);
         attributes.add(contentKnowledge);

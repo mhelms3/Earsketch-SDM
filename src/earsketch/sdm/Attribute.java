@@ -17,6 +17,9 @@ public class Attribute {
     private double attrValue[];
     private final String attrType; //standard, internalFocus, selfEfficacy, gaps, balanced
     private final List<Influencer> influence;
+    
+    
+    
     private final Agent parentAgent;
     private final String name;
     private final double trend;
@@ -32,22 +35,30 @@ public class Attribute {
     private double weightExternal = .6;   //default value
     private double K =    .1;             //default value
     
-    private boolean isAnnual = false;
+    private boolean hasAnnualFactor = false;
+    private boolean resetAnnual = false;
 
 
+    public double Clamp (double val, double min, double max)
+    {
+        if (val < min) return min;
+        else if(val > max) return max;
+        else return val;
+    }
+    
     public Attribute(Agent a) {
         parentAgent = a;
         attrValue[0] = 0;
         trend = 0;
-        attrType = "InternalOnly";        
+        attrType = "static";        
         influence = new ArrayList<>();        
-        name = "standard";
+        name = "default";
         setGeneralParameters(-5, 5, .1);
         initializeChangeEquation();
         
     }
     
-    public Attribute(Agent a, double defaultValue, int sizeOfAttrValue, String type, String attributeName, double attributeTrend, boolean annual) {
+    public Attribute(Agent a, double defaultValue, int sizeOfAttrValue, String type, String attributeName, double attributeTrend, boolean annual, boolean rAnnual) {
         parentAgent = a; 
         attrValue = new double[sizeOfAttrValue];
         Arrays.fill(attrValue, defaultValue);
@@ -55,9 +66,15 @@ public class Attribute {
         attrType = type;
         name = attributeName;
         trend = attributeTrend;
-        isAnnual = annual;
+        hasAnnualFactor = annual;
+        resetAnnual = rAnnual;
         setGeneralParameters(5, -5, .1);
         initializeChangeEquation();
+    }
+    
+    public String getName ()
+    {
+        return name;
     }
     
     private void setGeneralParameters(double max, double min, double step)
@@ -139,9 +156,9 @@ public class Attribute {
     
    
     
-    public void addInfluencer(Agent a, Attribute attr, double weight, boolean isAbsolute)
+    public void addInfluencer(Agent a, Attribute attr, double weight, boolean isAbsolute, boolean isAnnual)
     {
-        Influencer I = new Influencer(a, attr, weight, isAbsolute);
+        Influencer I = new Influencer(a, attr, weight, isAbsolute, isAnnual);
         influence.add(I);
         
     }
@@ -200,9 +217,9 @@ public class Attribute {
             double R = randomVar.nextDouble();
             if (change_prob >= 0)
             {
-                if ((R <= change_prob) && (attrValue[t-1] + stepSize <= maxLevel)) 
+                if ((R <= change_prob)) 
                 {
-                    attrValue[t] = attrValue[t-1] + stepSize;
+                    attrValue[t] = Clamp(attrValue[t-1] + stepSize, minLevel, maxLevel);
                     System.out.println("Up");
                 }
                 else                 
@@ -210,9 +227,9 @@ public class Attribute {
             }
             else
             {
-                if ((R <= -change_prob) && (attrValue[t-1] - stepSize >= minLevel)) 
+                if ((R <= -change_prob)) 
                 {
-                    attrValue[t] = attrValue[t-1] - stepSize;    
+                    attrValue[t] = Clamp(attrValue[t-1] - stepSize, minLevel, maxLevel);    
                     System.out.println("Down");
                 }
                 else 
@@ -227,8 +244,7 @@ public class Attribute {
             else return 0.0;
         }
     
-    
-    public void update(int time)
+    private void updateByInfluence(int time)
     {
         double valueInfluenceAttr;
         double influenceWeight;
@@ -241,14 +257,7 @@ public class Attribute {
         double totalValueDelta = 0;
         double totalWeightDelta = 0;
         double finalValueDelta = 0;
-        
-        if (attrType == "static")
-        {
-            attrValue[time] = attrValue[time-1];
-        }
-        else if (!isAnnual)
-        {
-            for(Influencer I:influence)
+        for(Influencer I:influence)
             {
                 Agent iAgent = I.getAgent();
                 Attribute influenceAttr = I.getAttribute();
@@ -274,10 +283,52 @@ public class Attribute {
             if (totalWeightDelta>0)
                     finalValueDelta = totalValueDelta/totalWeightDelta;
             changeEquation(time, trend, finalValueAbsolute, finalValueDelta);
+    }
+    
+    
+    public void update(int time)
+    {
+        boolean isEndOfYear;
+        if((time+1)%13 == 0 && time > 0)
+            isEndOfYear = true;
+        else
+            isEndOfYear = false;
+        
+        if (attrType.equals("static"))
+        {
+            attrValue[time] = attrValue[time-1];
+        }
+        else if (isEndOfYear)
+        {
+            //end of year updates (t=13, 26, 39, etc)
+            if (resetAnnual)
+            {
+                attrValue[time] = attrValue[0];
+            }
+            else if (hasAnnualFactor)
+            {
+                if (attrType.equals("incremental"))
+                {
+                    attrValue[time] = Clamp(attrValue[time-1]+trend, minLevel, maxLevel);
+                }
+                else
+                {
+                    updateByInfluence(time);
+                }
+                //***********DO OTHER END OF YEAR STUFF****************
+                //***********DO OTHER END OF YEAR STUFF****************
+                //***********DO OTHER END OF YEAR STUFF****************
+            }
+            else
+            {
+                //value in between year = last value if there are no annual factors
+                attrValue[time] = attrValue[time-1];
+            }
         }
         else
         {
-            //CODE ANNUAL CHANGES HERE
+            //regular update (t= 1-12, 14-25, 27-38, etc.)
+            updateByInfluence(time);
         }
             
     }

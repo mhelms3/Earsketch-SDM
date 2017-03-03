@@ -44,12 +44,12 @@ public class Students extends Agent{
     public Students(int maxTime, String studentsName)
     {
         //fixed variables
-        musicArtAppreciation = new Attribute(this, 0, maxTime, "static", "Music and Art Appreciation",0, false);
-        musicTechnicalKnowledge = new Attribute(this, 0, maxTime, "static", "Technical Music Knowledge",0, false);
-        CS_BackgroundClasses = new Attribute(this, 0, maxTime, "static", "CS Background - # of Classes",0, false);
-        CS_BackgroundInformal = new Attribute(this, 0, maxTime, "static", "CS Background - informal",0, false);
-        percentFreeLunch = new Attribute(this, 0, maxTime, "static", "Percent Free Lunch",0, false);
-        transienceRate = new Attribute(this, 0, maxTime, "static", "Transience Rate",0, false);
+        musicArtAppreciation = new Attribute(this, 0, maxTime, "static", "Music and Art Appreciation",0, false, false);
+        musicTechnicalKnowledge = new Attribute(this, 0, maxTime, "static", "Technical Music Knowledge",0, false, false);
+        CS_BackgroundClasses = new Attribute(this, 0, maxTime, "static", "CS Background - # of Classes",0, false, false);
+        CS_BackgroundInformal = new Attribute(this, 0, maxTime, "static", "CS Background - informal",0, false, false);
+        percentFreeLunch = new Attribute(this, 0, maxTime, "static", "Percent Free Lunch",0, false, false);
+        transienceRate = new Attribute(this, 0, maxTime, "static", "Transience Rate",0, false, false);
         attributes.add(musicArtAppreciation);
         attributes.add(musicTechnicalKnowledge);
         attributes.add(CS_BackgroundClasses);
@@ -58,10 +58,10 @@ public class Students extends Agent{
         attributes.add(transienceRate);
         
         //dynamic variables
-        CS_ContentKnowledge = new Attribute(this, 0, maxTime, "balanced", "CS Content Knowledge",-0.1, false);
-        CS_Engagement = new Attribute(this, 0, maxTime, "internalFocus", "CS Engagement",0.1, false);        
-        ActiveParticipation = new Attribute(this, 0, maxTime, "internalFocus", "Active Participation",-0.1, false);
-        CommunitySupport = new Attribute(this, 0, maxTime, "externalFocus", "Community Support",0.1, false);
+        CS_ContentKnowledge = new Attribute(this, 0, maxTime, "balanced", "CS Content Knowledge",-0.1, false, true);
+        CS_Engagement = new Attribute(this, 0, maxTime, "internalFocus", "CS Engagement",0.1, false, true);        
+        ActiveParticipation = new Attribute(this, 0, maxTime, "internalFocus", "Active Participation",-0.1, false, false);
+        CommunitySupport = new Attribute(this, 0, maxTime, "externalFocus", "Community Support",0.1, false, false);
         attributes.add(CS_ContentKnowledge);
         attributes.add(CS_Engagement);
         attributes.add(ActiveParticipation);

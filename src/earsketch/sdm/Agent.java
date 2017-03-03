@@ -46,5 +46,15 @@ abstract public class Agent {
     {
         name = s;
     }
+    
+    public Attribute getAttributeByName(String s)
+    {
+        for(Attribute a: attributes)
+        {
+            if(a.getName().equals(s))
+                return a;
+        }
+        return null;
+    }
 }
 

@@ -12,18 +12,25 @@ public class Influencer {
     private final Attribute influencingAttribute; //this should be a pointer to an attributbe of an Agent
     private final double weightInfluence;         //weight of influence [1 to 5], fixed    
     private final boolean isAbsolute;             //affects ABSOLUTE half of internal change equation, else affects DELTA half of internal change equation
+    private final boolean isAnnual;               //applies only to annual changes 
 
-    public Influencer(Agent a1, Attribute attr1, double w, boolean absolute)
+    public Influencer(Agent a1, Attribute attr1, double w, boolean absolute, boolean annual)
     {
         influencingAgent = a1;
         influencingAttribute = attr1;
         weightInfluence = w;
         isAbsolute = absolute;
+        isAnnual = annual;
     }
     
     public boolean getAbsolute()
     {
         return isAbsolute;
+    }
+    
+    public boolean getAnnual()
+    {
+        return isAnnual;
     }
     
     public Agent getAgent()
