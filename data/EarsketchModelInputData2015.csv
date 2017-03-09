@@ -1,54 +1,1 @@
-Student,Name,Berkmar Students,Discovery Students,Collins Hill Students,
-Student,Music and Art Appreciation,1.1,2.2,3.3,
-Student,Technical Music Knowledge,1,2,3,
-Student,CS Background - # of Classes,1,2,3,
-Student,CS Background - informal,1,2,3,
-Student,Percent Free Lunch,1,2,3,
-Student,Transience Rate,1,2,3,
-Student,CS Content Knowledge,1,2,3,
-Student,CS Engagement,1,2,3,
-Student,Community Support,1,2,3,
-Student,Active Participation,1,2,3,
-,,,,,
-Classroom,Name,Berkmar Classroom,Discovery Classroom,Collins Hill Classroom,
-Classroom,AP Class,1,2,3,
-Classroom,Technology Support,1,2,3,
-Classroom,Observed Collaboration,1,2,3,
-Classroom,Number of Students,1,2,3,
-Classroom,Allocated Time,1,2,3,
-Classroom,Instructional Time,1,2,3,
-Classroom,Teacher Prep Time,1,2,3,
-,,,,,
-Administration,Name,Berkmar Administration,Discovery Administration,Collins Hill Administration,
-Administration,Experience with Sponsor,1,2,3,
-Administration,Years of Intervention,1,2,3,
-Administration,Intervention Support,1,2,3,
-Administration,CSP Pathway Support,1,2,3,
-,,,,,
-Teacher,Name,Berkmar Teacher,Discovery Teacher,Collins Hill Teacher,
-Teacher,Teaching Qualifications,1,2,3,
-Teacher,Music and Art Interest,1,2,3,
-Teacher,CS Experience,1,2,3,
-Teacher,Teaching Experience,1,2,3,
-Teacher,Studio Teaching,1,2,3,
-Teacher,Earsketch Knowledge,1,2,3,
-Teacher,Content Knowledge,1,2,3,
-Teacher,CS Self Efficacy,1,2,3,
-Teacher,Intervention Support,1,2,3,
-Teacher,Technical Music Knowledge,1,2,3,
-,,,,,
-SponsoringOrg,Name,Georgia Tech,,,
-SponsoringOrg,Initial PD CS,4,,,
-SponsoringOrg,Initial PD EarSketch,4,,,
-SponsoringOrg,Initial PD Studio,4,,,
-SponsoringOrg,Technical Support,4,,,
-SponsoringOrg,Adaptability,4,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
+Attribute,Student,Name,Berkmar Students,Discovery Students,Collins Hill Students,,Attribute,Student,Music and Art Appreciation,1.1,2.2,3.3,,Attribute,Student,Technical Music Knowledge,1,2,3,,Attribute,Student,CS Background - # of Classes,1,2,3,,Attribute,Student,CS Background - informal,1,2,3,,Attribute,Student,Percent Free Lunch,1,2,3,,Attribute,Student,Transience Rate,1,2,3,,Attribute,Student,CS Content Knowledge,1,2,3,,Attribute,Student,CS Engagement,1,2,3,,Attribute,Student,Community Support,1,2,3,,Attribute,Student,Active Participation,1,2,3,,,,,,,,,Attribute,Classroom,Name,Berkmar Classroom,Discovery Classroom,Collins Hill Classroom,,Attribute,Classroom,AP Class,1,2,3,,Attribute,Classroom,Technology Support,1,2,3,,Attribute,Classroom,Observed Collaboration,1,2,3,,Attribute,Classroom,Number of Students,1,2,3,,Attribute,Classroom,Allocated Time,1,2,3,,Attribute,Classroom,Instructional Time,1,2,3,,Attribute,Classroom,Teacher Prep Time,1,2,3,,,,,,,,,Attribute,Administration,Name,Berkmar Administration,Discovery Administration,Collins Hill Administration,,Attribute,Administration,Experience with Sponsor,1,2,3,,Attribute,Administration,Years of Intervention,1,2,3,,Attribute,Administration,Intervention Support,1,2,3,,Attribute,Administration,CSP Pathway Support,1,2,3,,,,,,,,,Attribute,Teacher,Name,Berkmar Teacher,Discovery Teacher,Collins Hill Teacher,,Attribute,Teacher,Teaching Qualifications,1,2,3,,Attribute,Teacher,Music and Art Interest,1,2,3,,Attribute,Teacher,CS Experience,1,2,3,,Attribute,Teacher,Teaching Experience,1,2,3,,Attribute,Teacher,Studio Teaching,1,2,3,,Attribute,Teacher,Earsketch Knowledge,1,2,3,,Attribute,Teacher,Content Knowledge,1,2,3,,Attribute,Teacher,CS Self Efficacy,1,2,3,,Attribute,Teacher,Intervention Support,1,2,3,,Attribute,Teacher,Technical Music Knowledge,1,2,3,,,,,,,,,Attribute,SponsoringOrg,Name,Georgia Tech,,,,Attribute,SponsoringOrg,Initial PD CS,4,,,,Attribute,SponsoringOrg,Initial PD EarSketch,4,,,,Attribute,SponsoringOrg,Initial PD Studio,4,,,,Attribute,SponsoringOrg,Technical Support,4,,,,Attribute,SponsoringOrg,Adaptability,4,,,,IGNORE,Agent,Attrribute,Influencing Agent,Influencing Attribute,Weight of Influence,Is ABSOLUTE,Is ANNUALInfluence,Berkmar Teacher,CS Self Efficacy,Berkmar Teacher,Content Knowledge,0.5,FALSE,FALSEInfluence,Berkmar Teacher,CS Self Efficacy,Berkmar Teacher,Studio Teaching,0.5,FALSE,FALSE,,,,,,,Influence,Discovery Teacher,CS Self Efficacy,Discovery Teacher,Content Knowledge,0.5,FALSE,FALSEInfluence,Discovery Teacher,CS Self Efficacy,Discovery Teacher,Studio Teaching,0.5,FALSE,FALSE,,,,,,,Influence,Collins Hill Teacher,CS Self Efficacy,Collins Hill Teacher,Content Knowledge,0.5,FALSE,FALSEInfluence,Collins Hill Teacher,CS Self Efficacy,Collins Hill Teacher,Studio Teaching,0.5,FALSE,FALSE,,,,,,,Influence,Berkmar Teacher,Studio Teaching,Discovery Teacher,Studio Teaching,0.25,TRUE,FALSEInfluence,Berkmar Teacher,Studio Teaching,Collins Hill Teacher,Studio Teaching,0.25,TRUE,FALSEInfluence,Berkmar Teacher,Studio Teaching,Georgia Tech,Initial PD Studio,0.5,TRUE,FALSE,,,,,,,Influence,Discovery Teacher,Studio Teaching,Berkmar Teacher,Studio Teaching,0.25,TRUE,FALSEInfluence,Discovery Teacher,Studio Teaching,Collins Hill Teacher,Studio Teaching,0.25,TRUE,FALSEInfluence,Discovery Teacher,Studio Teaching,Georgia Tech,Initial PD Studio,0.5,TRUE,FALSE,,,,,,,Influence,Collins Hill Teacher,Studio Teaching,Discovery Teacher,Studio Teaching,0.25,TRUE,FALSEInfluence,Collins Hill Teacher,Studio Teaching,Berkmar Teacher,Studio Teaching,0.25,TRUE,FALSEInfluence,Collins Hill Teacher,Studio Teaching,Georgia Tech,Initial PD Studio,0.5,TRUE,FALSE,,,,,,,Influence,Berkmar Teacher,Studio Teaching,Discovery Teacher,Studio Teaching,0.25,FALSE,FALSEInfluence,Berkmar Teacher,Studio Teaching,Collins Hill Teacher,Studio Teaching,0.25,FALSE,FALSEInfluence,Berkmar Teacher,Studio Teaching,Georgia Tech,Initial PD Studio,0.5,FALSE,FALSE,,,,,,,Influence,Discovery Teacher,Studio Teaching,Berkmar Teacher,Studio Teaching,0.25,FALSE,FALSEInfluence,Discovery Teacher,Studio Teaching,Collins Hill Teacher,Studio Teaching,0.25,FALSE,FALSEInfluence,Discovery Teacher,Studio Teaching,Georgia Tech,Initial PD Studio,0.5,FALSE,FALSE,,,,,,,Influence,Collins Hill Teacher,Studio Teaching,Discovery Teacher,Studio Teaching,0.25,FALSE,FALSEInfluence,Collins Hill Teacher,Studio Teaching,Berkmar Teacher,Studio Teaching,0.25,FALSE,FALSEInfluence,Collins Hill Teacher,Studio Teaching,Georgia Tech,Initial PD Studio,0.5,FALSE,FALSE,,,,,,,Influence,Berkmar Teacher,Content Knowledge,Georgia Tech,Initial PD CS,1,TRUE,FALSE,,,,,,,Influence,Discovery Teacher,Content Knowledge,Georgia Tech,Initial PD CS,1,TRUE,FALSE,,,,,,,Influence,Collins Hill Teacher,Content Knowledge,Georgia Tech,Initial PD CS,1,TRUE,FALSE,,,,,,,Influence ,Berkmar Teacher,Earsketch Knowledge,Georgia Tech,Initial PD EarSketch,0.5,TRUE,FALSEInfluence ,Berkmar Teacher,Earsketch Knowledge,Berkmar Teacher,Technical Music Knowledge,0.25,TRUE,FALSEInfluence ,Berkmar Teacher,Earsketch Knowledge,Berkmar Teacher,Music and Art Interest,0.25,TRUE,FALSE,,,,,,,Influence ,Discovery Teacher,Earsketch Knowledge,Georgia Tech,Initial PD EarSketch,0.5,TRUE,FALSEInfluence ,Discovery Teacher,Earsketch Knowledge,Discovery Teacher,Technical Music Knowledge,0.25,TRUE,FALSEInfluence ,Discovery Teacher,Earsketch Knowledge,Discovery Teacher,Music and Art Interest,0.25,TRUE,FALSE,,,,,,,Influence ,Collins Hill Teacher,Earsketch Knowledge,Georgia Tech,Initial PD EarSketch,0.5,TRUE,FALSEInfluence ,Collins Hill Teacher,Earsketch Knowledge,Collins Hill Teacher,Technical Music Knowledge,0.25,TRUE,FALSEInfluence ,Collins Hill Teacher,Earsketch Knowledge,Collins Hill Teacher,Music and Art Interest,0.25,TRUE,FALSE,,,,,,,Influence,Berkmar Teacher,Intervention Support,Berkmar Teacher,Studio Teaching,0.1,FALSE,FALSEInfluence,Berkmar Teacher,Intervention Support,Berkmar Teacher,Content Knowledge,0.1,FALSE,FALSEInfluence,Berkmar Teacher,Intervention Support,Berkmar Teacher,Earsketch Knowledge,0.1,FALSE,FALSEInfluence,Berkmar Teacher,Intervention Support,Berkmar Administration,Intervention Support,0.2,FALSE,FALSEInfluence,Berkmar Teacher,Intervention Support,Berkmar Classroom,Technology Support,0.1,FALSE,FALSEInfluence,Berkmar Teacher,Intervention Support,Georgia Tech,Technical Support,0.2,FALSE,FALSEInfluence,Berkmar Teacher,Intervention Support,Georgia Tech,Adaptability,0.2,FALSE,FALSE,,,,,,,Influence,Discovery Teacher,Intervention Support,Discovery Teacher,Studio Teaching,0.1,FALSE,FALSEInfluence,Discovery Teacher,Intervention Support,Discovery Teacher,Content Knowledge,0.1,FALSE,FALSEInfluence,Discovery Teacher,Intervention Support,Discovery Teacher,Earsketch Knowledge,0.1,FALSE,FALSEInfluence,Discovery Teacher,Intervention Support,Discovery Administration,Intervention Support,0.2,FALSE,FALSEInfluence,Discovery Teacher,Intervention Support,Discovery Classroom,Technology Support,0.1,FALSE,FALSEInfluence,Discovery Teacher,Intervention Support,Georgia Tech,Technical Support,0.2,FALSE,FALSEInfluence,Discovery Teacher,Intervention Support,Georgia Tech,Adaptability,0.2,FALSE,FALSE,,,,,,,Influence,Collins Hill Teacher,Intervention Support,Collins Hill Teacher,Studio Teaching,0.1,FALSE,FALSEInfluence,Collins Hill Teacher,Intervention Support,Collins Hill Teacher,Content Knowledge,0.1,FALSE,FALSEInfluence,Collins Hill Teacher,Intervention Support,Collins Hill Teacher,Earsketch Knowledge,0.1,FALSE,FALSEInfluence,Collins Hill Teacher,Intervention Support,Collins Hill Administration,Intervention Support,0.2,FALSE,FALSEInfluence,Collins Hill Teacher,Intervention Support,Collins Hill Classroom,Technology Support,0.1,FALSE,FALSEInfluence,Collins Hill Teacher,Intervention Support,Georgia Tech,Technical Support,0.2,FALSE,FALSEInfluence,Collins Hill Teacher,Intervention Support,Georgia Tech,Adaptability,0.2,FALSE,FALSE,,,,,,,Influence,Berkmar Teacher,Technical Music Knowledge,Berkmar Teacher,Earsketch Knowledge,1,FALSE,FALSE,,,,,,,Influence,Discovery Teacher,Technical Music Knowledge,Discovery Teacher,Earsketch Knowledge,1,FALSE,FALSE,,,,,,,Influence,Collins Hill Teacher,Technical Music Knowledge,Collins Hill Teacher,Earsketch Knowledge,1,FALSE,FALSE

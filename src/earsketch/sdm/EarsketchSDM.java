@@ -23,54 +23,73 @@ public class EarsketchSDM {
      */
     static boolean ABSOLUTE = true;
     static boolean DELTA = false;
+    static int yearIncrements = 13;
+    static int years = 3;
+    
+    
+    private static Agent getAgentByName(String s, List<Agent> agents)
+    {
+        for(Agent a: agents)
+        {
+            if(a.getName().equals(s))
+                return a;
+        }
+        System.out.println("Null attribute name exception in getAgentByName for:"+s);
+        return null;
+    }
     
     private static void setupRelationships(List<Agent> T)
     {
+        Agent cAgent;
         //initialize teacher Relationships
         //DO FILE READS
-        T.get(0).addRelationship(T.get(1), 1.5);
-        T.get(1).addRelationship(T.get(0), 1.5);
-        T.get(2).addRelationship(T.get(0), 2);
-                
-        for (Agent t:T)
-        {
-            System.out.println(t.name+" ");            
-            for (Attribute a: t.attributes)
-            {
-                System.out.print("     "+a.getAttrType()+" ");
-                System.out.println(a.getValue(0));
-            }
-            for (Relationship r:t.relationships)
-            {
-                System.out.print("     "+r.getStrength()+" ");
-                System.out.println(r.getAgent().getName());
-            }
-        }
-    }
-    
-    private Agent getAgentByName(String s)
-    {
         
+        cAgent = getAgentByName("Berkmar Teacher", T);
+        cAgent.addRelationship(cAgent, 5);
+        cAgent.addRelationship(getAgentByName("Discovery Teacher", T), 1.5);
+        cAgent.addRelationship(getAgentByName("Collins Hill Teacher", T), 1.5);
+        cAgent.addRelationship(getAgentByName("Georgia Tech", T), 5);
+        cAgent.addRelationship(getAgentByName("Berkmar Administration", T), 2);
+        cAgent.addRelationship(getAgentByName("Berkmar Classroom", T), 5);
+        
+        cAgent = getAgentByName("Discovery Teacher", T);
+        cAgent.addRelationship(cAgent, 5);
+        cAgent.addRelationship(getAgentByName("Berkmar Teacher", T), 1.5);
+        cAgent.addRelationship(getAgentByName("Collins Hill Teacher", T), 1.5);
+        cAgent.addRelationship(getAgentByName("Georgia Tech", T), 5);
+        cAgent.addRelationship(getAgentByName("Discovery Administration", T), 2);
+        cAgent.addRelationship(getAgentByName("Discovery Classroom", T), 5);
+        
+        cAgent = getAgentByName("Collins Hill Teacher", T);
+        cAgent.addRelationship(cAgent, 5);
+        cAgent.addRelationship(getAgentByName("Discovery Teacher", T), 1.5);
+        cAgent.addRelationship(getAgentByName("Berkmar Teacher", T), 1.5);
+        cAgent.addRelationship(getAgentByName("Georgia Tech", T), 5);
+        cAgent.addRelationship(getAgentByName("Collins Hill Administration", T), 2);
+        cAgent.addRelationship(getAgentByName("Collins Hill Classroom", T), 5);
     }
     
-    private static void setupInfluences(List<Agent> T)
+    
+    private static void processInfluences(List<String> s, List<Agent> theAgents)
     {
         Agent cAgent;
         Attribute cAttr;
         Agent iAgent;
-      //**********MAKE THIS DATA DRIVEN*****************
-      //**********MAKE THIS DATA DRIVEN*****************
-      //**********MAKE THIS DATA DRIVEN*****************
-      //Add influences
-      
-        cAgent = T.getAgentByName(0);
-        cAttr = cAgent.getAttributeByName("CS Self Efficacy");
-        iAgent = T.getAgentByName(1);
-        
-        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("CS Self Efficacy"), .3, ABSOLUTE, false);
-        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("Content Knowledge"), .3, ABSOLUTE, false);
-        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("CS Experience"), .2, ABSOLUTE, false);
-        cAttr.addInfluencer(iAgent, iAgent.getAttributeByName("Teaching Experience"), .2, ABSOLUTE, false);
+        Attribute iAttr;
+        double weight;
+        boolean isAbsolute = false;
+        boolean isAnnual = false;
+
+        cAgent = getAgentByName(s.get(1), theAgents);
+        cAttr = cAgent.getAttributeByName(s.get(2));
+        iAgent = getAgentByName(s.get(3), theAgents);
+        iAttr = iAgent.getAttributeByName(s.get(4));
+        weight = Double.parseDouble(s.get(5));
+        if(s.get(6).equals("TRUE"))
+            isAbsolute = true;
+        if(s.get(7).equals("TRUE"))
+            isAnnual = true;
+        cAttr.addInfluencer(iAgent, iAttr, weight, isAbsolute, isAnnual);
     }
     
     private static void addToAgents (List<Agent> a, List<Agent> b)
@@ -123,39 +142,33 @@ public class EarsketchSDM {
         return 999;
     }
     
-    private static void processInput(List<String> s, List<Agent> agents)
+    private static void processAttributeInput(List<String> s, List<Agent> agents)
     {
-        String Attribute = s.get(1);
+        String Attribute = s.get(2);
         int attrIndex = getAttributeIndex(Attribute, agents);
-        System.out.print(s.get(0)+":");
-        System.out.print(Attribute+"  Values-->");
         Agent a;
         Double d;
-        for(int i = 0; i<s.size()-2; i++)
+        
+        for(int i = 1; i<s.size()-2; i++)
         {
             if(Attribute.equals("Name"))
             {
-                agents.get(i).setName(s.get(i+2));
-                System.out.print(agents.get(i).getName()+" ");
+                agents.get(i-1).setName(s.get(i+2));
             }
             else
             {
                 d = Double.parseDouble(s.get(i+2));
-                a = agents.get(i);
+                a = agents.get(i-1);
                 a.attributes.get(attrIndex).setValue(0, d);
-                System.out.print("|"+s.get(i+2)+"||"+a.attributes.get(attrIndex).getValue(0));
             }
         }
-        System.out.println("");
     }
     
-    private static void getStartingValues(List<Agent> teachers, List<Agent> classrooms, List<Agent> students, List<Agent> admins, List<Agent> sponsoringOrg) throws IOException
+    private static void getStartingValues(List<Agent> allAgents, List<Agent> teachers, List<Agent> classrooms, List<Agent> students, List<Agent> admins, List<Agent> sponsoringOrg) throws IOException
     {
         String fileName;
         String workingDir = System.getProperty("user.dir");
 	System.out.println("Current working directory : " + workingDir);
-        
-        //fileName = "C:\\Users\\Michael\\Documents\\CEISMC Data\\EarsketchModelInputData2015.csv";
         fileName = "data\\EarsketchModelInputData2015.csv";
         BufferedReader br = new BufferedReader(
         new InputStreamReader(new FileInputStream(fileName)));
@@ -165,20 +178,31 @@ public class EarsketchSDM {
             while ((line = br.readLine()) != null) {
                 list = Arrays.asList(line.split(","));
                 if(list.size()>0)
-                    switch(list.get(0)){
-                    case "Teacher": processInput(list, teachers);
-                        break;
-                    case "Classroom": processInput(list, classrooms);
-                        break;
-                    case "Student": processInput(list, students);
-                        break;
-                    case "Administration": processInput(list, admins);
-                        break;
-                    case "SponsoringOrg": processInput(list, sponsoringOrg);
-                        break;
-                    default: System.out.println("Error in assigning attribute value to an agent "+list.get(0));
-                        break;
+                {
+                    if(list.get(0).equals("Attribute"))
+                    {
+                        switch(list.get(1)){
+                        case "Teacher": processAttributeInput(list, teachers);
+                            break;
+                        case "Classroom": processAttributeInput(list, classrooms);
+                            break;
+                        case "Student": processAttributeInput(list, students);
+                            break;
+                        case "Administration": processAttributeInput(list, admins);
+                            break;
+                        case "SponsoringOrg": processAttributeInput(list, sponsoringOrg);
+                            break;
+                        default: System.out.println("Error in assigning attribute value to an agent "+list.get(0));
+                            break;
+                        }
                     }
+                    else if(list.get(0).equals("Influence"))
+                    {
+                        processInfluences(list, allAgents);
+                    }
+                }
+                
+                
             }
         } finally {
             br.close();
@@ -187,10 +211,7 @@ public class EarsketchSDM {
     
     public static void main(String[] args) throws IOException {
      
-    
-  
-        int years = 3;
-        int maxTime = years*13; //12 months + 1 annual cycle
+        int maxTime = years*yearIncrements; //12 months + 1 annual cycle
 
         //build agent objects (2015: 3 Teachers, 3 Classrooms, 3 Students, 3 Admins, 1 Sponsoring Org)
         List<Agent> allAgents = new ArrayList<>();
@@ -201,14 +222,14 @@ public class EarsketchSDM {
         List<Agent> sponsoringOrgs = createAgents("sponsor", 1, maxTime, allAgents);
         
         //load initial parameters for all agents
-        getStartingValues(allTeachers, allClassrooms, allStudents, allAdmins, sponsoringOrgs);
-        setupRelationships(allTeachers);
-        setupInfluences(allTeachers);
+        getStartingValues(allAgents, allTeachers, allClassrooms, allStudents, allAdmins, sponsoringOrgs);
+        setupRelationships(allAgents);
+        //setupInfluences(allAgents);
         
         
         for (int i=1; i<maxTime; i++)
         { //run update for all teachers, all attributes
-          for (Agent T:allTeachers)
+          for (Agent T:allAgents)
           {
               for (Attribute A:T.attributes)
               {
@@ -216,8 +237,8 @@ public class EarsketchSDM {
               }
           }
         }
-        
-        for (Agent T:allTeachers)
+
+        for (Agent T:allAgents)
           { //print final values of all attributes
               for (Attribute A:T.attributes)                  
               {
@@ -225,6 +246,7 @@ public class EarsketchSDM {
                     A.printAttrValues();
               }
           }
+
      
             
     } //end Main

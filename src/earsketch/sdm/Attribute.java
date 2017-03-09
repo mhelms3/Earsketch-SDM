@@ -53,7 +53,7 @@ public class Attribute {
         attrType = "static";        
         influence = new ArrayList<>();        
         name = "default";
-        setGeneralParameters(-5, 5, .1);
+        setGeneralParameters(-5, 5);
         initializeChangeEquation();
         
     }
@@ -68,7 +68,7 @@ public class Attribute {
         trend = attributeTrend;
         hasAnnualFactor = annual;
         resetAnnual = rAnnual;
-        setGeneralParameters(5, -5, .1);
+        setGeneralParameters(5, -5);
         initializeChangeEquation();
     }
     
@@ -77,11 +77,11 @@ public class Attribute {
         return name;
     }
     
-    private void setGeneralParameters(double max, double min, double step)
+    private void setGeneralParameters(double max, double min)
     {
         maxLevel = max;
         minLevel = min;
-        stepSize = step;
+        stepSize = max/((EarsketchSDM.yearIncrements-1)*2);
     }
     
     private void initializeChangeEquation ()
@@ -208,12 +208,12 @@ public class Attribute {
 
         }
     
-    public void changeEquation(int t, double trend, double p_abs, double p_delta)
+    public void changeEquation(int t, double p_abs, double p_delta)
         {            
-            System.out.print("ABS:"+p_abs);
-            System.out.print("  ++DELTA:"+p_delta);
+            //System.out.print("ABS:"+p_abs);
+            //System.out.print("  **DELTA:"+p_delta);
             double change_prob = (weightInternal * ((Math.exp(-K * t) * p_abs * f_s(attrValue[t-1])) + ((1 - Math.exp(-K * t)) * p_delta))) + weightExternal * trend;            
-            System.out.println("  --Change:"+change_prob);
+            System.out.println(name+"  **Change:"+change_prob);
             double R = randomVar.nextDouble();
             if (change_prob >= 0)
             {
@@ -244,9 +244,16 @@ public class Attribute {
             else return 0.0;
         }
     
+    public double getMaxLevel()
+            
+    {
+        return maxLevel;
+    }
+    
     private void updateByInfluence(int time)
     {
         double valueInfluenceAttr;
+        double valueInfluenceAttr2;
         double influenceWeight;
         double relationshipWeight;
         
@@ -263,26 +270,37 @@ public class Attribute {
                 Attribute influenceAttr = I.getAttribute();
                 valueInfluenceAttr = influenceAttr.getValue(time-1);
                 influenceWeight = I.getWeight();
-                //System.out.println("!!!VALUE:"+valueInfluenceAttr);
+                relationshipWeight = getRelationshipWeight(parentAgent, iAgent);
+                
                 if(I.getAbsolute())//for ABSOLUTE CALCULATION
                 {
-                    totalValueAbsolute += (valueInfluenceAttr * influenceWeight);
+                    totalValueAbsolute += (valueInfluenceAttr/influenceAttr.getMaxLevel() * influenceWeight * relationshipWeight/5);
                     totalWeightAbsolute += influenceWeight;
-                    //System.out.println("ABS-->"+this.getName()+" Value: "+totalValueAbsolute+ " Weight: "+ totalWeightAbsolute);
+                    if(totalValueAbsolute>0)
+                    {
+                        System.out.println("ABS-->"+this.getName()+"...Influencer: "+ iAgent.getName()+":"+ influenceAttr.name+" Value: "+totalValueAbsolute+ " Weight: "+ totalWeightAbsolute);
+                    }
+                    
                 }
                 else //for DELTA CALCULATION
                 {
-                    relationshipWeight = getRelationshipWeight(parentAgent, iAgent);
-                    totalValueDelta += (valueInfluenceAttr * influenceWeight * relationshipWeight);  //this needs to be changed to use time last period and looks for change (IND function)
-                    totalWeightDelta += influenceWeight;
-                    //System.out.println("DELTA-->"+this.getName()+" Value: "+totalValueDelta+ " Weight: "+ totalWeightDelta);
+                    if(time>1)
+                    {
+                        valueInfluenceAttr2 = influenceAttr.getValue(time-2);
+                        totalValueDelta += (ind(valueInfluenceAttr, valueInfluenceAttr2) * influenceWeight * relationshipWeight/5);  //this needs to be changed to use time last period and looks for change (IND function)
+                        totalWeightDelta += influenceWeight;
+                    }
+                    if(totalValueDelta!=0)
+                    {
+                        System.out.println("DELTA-->"+this.getName()+"...Influencer: "+ iAgent.getName()+":"+influenceAttr.name+" Value: "+totalValueDelta+ " Weight: "+ totalWeightDelta);
+                    }
                 }
             }        
             if (totalWeightAbsolute>0)
-                finalValueAbsolute = totalValueAbsolute/totalWeightAbsolute;
+                finalValueAbsolute = (totalValueAbsolute/totalWeightAbsolute);
             if (totalWeightDelta>0)
-                    finalValueDelta = totalValueDelta/totalWeightDelta;
-            changeEquation(time, trend, finalValueAbsolute, finalValueDelta);
+                    finalValueDelta = (totalValueDelta/totalWeightDelta);
+            changeEquation(time, finalValueAbsolute, finalValueDelta);
     }
     
     

@@ -35,7 +35,7 @@ public class Classroom extends Agent{
         collaborationObserved = new Attribute(this, 0, maxTime, "annualOnly", "Observed Collaboration",0, true, false);
         classStudentNumber = new Attribute(this, 0, maxTime, "externalFocus", "Number of Students",-0.1, true, false);
         classAllocatedTime = new Attribute(this, 0, maxTime, "allExternalAbsolute", "Allocated Time",-0.1, true, false);
-        classInstructionalTime = new Attribute(this, 0, maxTime, "externalFocus", "Instructional Time",-0.5, true, false);
+        classInstructionalTime = new Attribute(this, 0, maxTime, "externalFocus", "Instructional Time",-0.1, true, false);
         classPrepTime = new Attribute(this, 0, maxTime, "externalFocus", "Teacher Prep Time",-0.1, true, false);
         attributes.add(technologySupport);
         attributes.add(collaborationObserved);

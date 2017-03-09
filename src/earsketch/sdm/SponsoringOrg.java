@@ -30,17 +30,24 @@ public class SponsoringOrg extends Agent{
     
     public SponsoringOrg(int maxTime, String sponsorName){
         
+        
+        initialPD_CS = new Attribute(this, 0, maxTime, "static", "Initial PD CS",0, true, false);
+        initialPD_EarSketch = new Attribute(this, 0, maxTime, "static", "Initial PD EarSketch",0, true, false);
+        initialPD_StudioBasedLearning = new Attribute(this, 0, maxTime, "static", "Initial PD Studio",0, true, false);
+        TechnicalSupport = new Attribute(this, 0, maxTime, "static", "Technical Support",0, false, false);
+        Adaptability = new Attribute(this, 0, maxTime, "static", "Adaptability",0, false, false);
+        
         //Incremetnal of Annual Variables
-        initialPD_CS = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD CS",0, true, false);
-        initialPD_EarSketch = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD EarSketch",0, true, false);
-        initialPD_StudioBasedLearning = new Attribute(this, 0, maxTime, "allInternalAbsolutey", "Initial PD Studio",0, true, false);
+        //********initialPD_CS = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD CS",0, true, false);
+        //********initialPD_EarSketch = new Attribute(this, 0, maxTime, "allInternalAbsolute", "Initial PD EarSketch",0, true, false);
+        //********initialPD_StudioBasedLearning = new Attribute(this, 0, maxTime, "allInternalAbsolutey", "Initial PD Studio",0, true, false);
         attributes.add(initialPD_CS);
         attributes.add(initialPD_EarSketch);                
         attributes.add(initialPD_StudioBasedLearning);                
         
         //Dynamic Variables
-        TechnicalSupport = new Attribute(this, 0, maxTime, "annualOnly", "Technical Support",0, false, false);
-        Adaptability = new Attribute(this, 0, maxTime, "allInternalDelta", "Adaptability",0, false, false);
+        //********TechnicalSupport = new Attribute(this, 0, maxTime, "annualOnly", "Technical Support",0, false, false);
+        //********Adaptability = new Attribute(this, 0, maxTime, "allInternalDelta", "Adaptability",0, false, false);
         attributes.add(TechnicalSupport);                
         attributes.add(Adaptability);
 

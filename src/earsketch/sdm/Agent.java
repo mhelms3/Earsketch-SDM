@@ -54,6 +54,7 @@ abstract public class Agent {
             if(a.getName().equals(s))
                 return a;
         }
+        System.out.println("Null attribute name exception in getAttributeByName for:"+s);
         return null;
     }
 }

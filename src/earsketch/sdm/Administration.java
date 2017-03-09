@@ -20,15 +20,20 @@ public class Administration extends Agent {
     
     public Administration(int maxTime, String adminName){
         
+        
+        experienceWithSponsor = new Attribute(this, 0, maxTime, "static", "Experience with Sponsor",0, true, false);
+        interventionSupport = new Attribute(this, 0, maxTime, "static", "Intervention Support",0, false, false);
+        CSP_pathwaySupport = new Attribute(this, 0, maxTime, "static", "CSP Pathway Support",0.1, false, false);
+        
         //Incremental and Annual Variables
-        experienceWithSponsor = new Attribute(this, 0, maxTime, "annualOnly", "Experience with Sponsor",0, true, false);
+        //********experienceWithSponsor = new Attribute(this, 0, maxTime, "annualOnly", "Experience with Sponsor",0, true, false);
         yearsOfIntervention = new Attribute(this, 0, maxTime, "incremental", "Years of Intervention",0, true, false);
         attributes.add(experienceWithSponsor);
         attributes.add(yearsOfIntervention);                
         
         //Dynamic Variables
-        interventionSupport = new Attribute(this, 0, maxTime, "allInternalDelta", "Intervention Support",0, false, false);
-        CSP_pathwaySupport = new Attribute(this, 0, maxTime, "externalFocus", "CSP Pathway Support",0.1, false, false);
+        //********interventionSupport = new Attribute(this, 0, maxTime, "allInternalDelta", "Intervention Support",0, false, false);
+        //********CSP_pathwaySupport = new Attribute(this, 0, maxTime, "externalFocus", "CSP Pathway Support",0.1, false, false);
         attributes.add(interventionSupport);
         attributes.add(CSP_pathwaySupport);                
         
